@@ -2,7 +2,7 @@
 CUDA_VISIBLE_DEVICES=0,1 /home/pengliang/glibc/glibc-2.32-install/lib/ld-linux-x86-64.so.2 \
   --library-path "/home/pengliang/glibc/glibc-2.32-install/lib:/usr/lib64:/usr/lib" \
   $(which python) run_vptq.py \
-    --model_name /home/pengliang/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659 \
+    --model_name /home/pengliang/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659 \
     --output_dir /home/pengliang/Desktop/test_output/Meta-Llama-3.1-8B-Instruct/ \
     --vector_lens -1 8 \
     --group_num 1 \
@@ -10,7 +10,6 @@ CUDA_VISIBLE_DEVICES=0,1 /home/pengliang/glibc/glibc-2.32-install/lib/ld-linux-x
     --num_res_centroids -1 256 \
     --npercent 0 \
     --blocksize 128 \
-    --eval \
     --new_eval \
     --seq_len 8192 \
     --kmeans_mode hessian \
