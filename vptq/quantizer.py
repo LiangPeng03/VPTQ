@@ -399,9 +399,9 @@ class NPVectorQuantizer:
                 self.logger.info(f'kmeans_mode: {self.kmeans_mode}, cuml kmeans, {num_centroids} clusters')
                 
                 sub_vectors = sub_vectors.to(torch.float32).cpu().numpy()
-                print(sub_vectors.shape,"!!!!!",vector_weights.shape)
+                vector_weights = vector_weights.mean(dim=1) if vector_weights is not None else None
                 with cupy.cuda.Device(vector_weights.device.index):
-                    _kmeans.fit(sub_vectors, sample_weight=vector_weights.mean(dim=1))
+                    _kmeans.fit(sub_vectors, sample_weight=vector_weights)
                 self.logger.info(f'cuml kmeans {_kmeans.n_iter_} iterations, error {_kmeans.inertia_}')
 
                 self.res_centroids[idx] = torch.from_numpy(_kmeans.cluster_centers_).to(device=data.device)
