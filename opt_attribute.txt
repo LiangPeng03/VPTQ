@@ -1,0 +1,407 @@
+==================================================
+OPT 模型结构信息
+==================================================
+
+1. 所有参数名称和形状:
+decoder.embed_tokens.weight: torch.Size([50272, 768])
+decoder.embed_positions.weight: torch.Size([2050, 768])
+decoder.final_layer_norm.weight: torch.Size([768])
+decoder.final_layer_norm.bias: torch.Size([768])
+decoder.layers.0.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.0.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.0.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.0.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.0.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.0.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.0.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.0.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.0.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.0.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.0.fc1.weight: torch.Size([3072, 768])
+decoder.layers.0.fc1.bias: torch.Size([3072])
+decoder.layers.0.fc2.weight: torch.Size([768, 3072])
+decoder.layers.0.fc2.bias: torch.Size([768])
+decoder.layers.0.final_layer_norm.weight: torch.Size([768])
+decoder.layers.0.final_layer_norm.bias: torch.Size([768])
+decoder.layers.1.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.1.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.1.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.1.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.1.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.1.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.1.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.1.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.1.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.1.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.1.fc1.weight: torch.Size([3072, 768])
+decoder.layers.1.fc1.bias: torch.Size([3072])
+decoder.layers.1.fc2.weight: torch.Size([768, 3072])
+decoder.layers.1.fc2.bias: torch.Size([768])
+decoder.layers.1.final_layer_norm.weight: torch.Size([768])
+decoder.layers.1.final_layer_norm.bias: torch.Size([768])
+decoder.layers.2.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.2.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.2.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.2.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.2.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.2.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.2.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.2.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.2.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.2.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.2.fc1.weight: torch.Size([3072, 768])
+decoder.layers.2.fc1.bias: torch.Size([3072])
+decoder.layers.2.fc2.weight: torch.Size([768, 3072])
+decoder.layers.2.fc2.bias: torch.Size([768])
+decoder.layers.2.final_layer_norm.weight: torch.Size([768])
+decoder.layers.2.final_layer_norm.bias: torch.Size([768])
+decoder.layers.3.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.3.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.3.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.3.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.3.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.3.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.3.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.3.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.3.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.3.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.3.fc1.weight: torch.Size([3072, 768])
+decoder.layers.3.fc1.bias: torch.Size([3072])
+decoder.layers.3.fc2.weight: torch.Size([768, 3072])
+decoder.layers.3.fc2.bias: torch.Size([768])
+decoder.layers.3.final_layer_norm.weight: torch.Size([768])
+decoder.layers.3.final_layer_norm.bias: torch.Size([768])
+decoder.layers.4.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.4.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.4.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.4.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.4.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.4.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.4.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.4.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.4.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.4.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.4.fc1.weight: torch.Size([3072, 768])
+decoder.layers.4.fc1.bias: torch.Size([3072])
+decoder.layers.4.fc2.weight: torch.Size([768, 3072])
+decoder.layers.4.fc2.bias: torch.Size([768])
+decoder.layers.4.final_layer_norm.weight: torch.Size([768])
+decoder.layers.4.final_layer_norm.bias: torch.Size([768])
+decoder.layers.5.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.5.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.5.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.5.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.5.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.5.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.5.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.5.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.5.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.5.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.5.fc1.weight: torch.Size([3072, 768])
+decoder.layers.5.fc1.bias: torch.Size([3072])
+decoder.layers.5.fc2.weight: torch.Size([768, 3072])
+decoder.layers.5.fc2.bias: torch.Size([768])
+decoder.layers.5.final_layer_norm.weight: torch.Size([768])
+decoder.layers.5.final_layer_norm.bias: torch.Size([768])
+decoder.layers.6.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.6.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.6.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.6.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.6.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.6.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.6.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.6.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.6.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.6.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.6.fc1.weight: torch.Size([3072, 768])
+decoder.layers.6.fc1.bias: torch.Size([3072])
+decoder.layers.6.fc2.weight: torch.Size([768, 3072])
+decoder.layers.6.fc2.bias: torch.Size([768])
+decoder.layers.6.final_layer_norm.weight: torch.Size([768])
+decoder.layers.6.final_layer_norm.bias: torch.Size([768])
+decoder.layers.7.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.7.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.7.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.7.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.7.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.7.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.7.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.7.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.7.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.7.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.7.fc1.weight: torch.Size([3072, 768])
+decoder.layers.7.fc1.bias: torch.Size([3072])
+decoder.layers.7.fc2.weight: torch.Size([768, 3072])
+decoder.layers.7.fc2.bias: torch.Size([768])
+decoder.layers.7.final_layer_norm.weight: torch.Size([768])
+decoder.layers.7.final_layer_norm.bias: torch.Size([768])
+decoder.layers.8.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.8.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.8.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.8.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.8.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.8.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.8.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.8.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.8.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.8.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.8.fc1.weight: torch.Size([3072, 768])
+decoder.layers.8.fc1.bias: torch.Size([3072])
+decoder.layers.8.fc2.weight: torch.Size([768, 3072])
+decoder.layers.8.fc2.bias: torch.Size([768])
+decoder.layers.8.final_layer_norm.weight: torch.Size([768])
+decoder.layers.8.final_layer_norm.bias: torch.Size([768])
+decoder.layers.9.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.9.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.9.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.9.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.9.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.9.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.9.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.9.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.9.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.9.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.9.fc1.weight: torch.Size([3072, 768])
+decoder.layers.9.fc1.bias: torch.Size([3072])
+decoder.layers.9.fc2.weight: torch.Size([768, 3072])
+decoder.layers.9.fc2.bias: torch.Size([768])
+decoder.layers.9.final_layer_norm.weight: torch.Size([768])
+decoder.layers.9.final_layer_norm.bias: torch.Size([768])
+decoder.layers.10.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.10.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.10.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.10.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.10.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.10.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.10.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.10.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.10.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.10.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.10.fc1.weight: torch.Size([3072, 768])
+decoder.layers.10.fc1.bias: torch.Size([3072])
+decoder.layers.10.fc2.weight: torch.Size([768, 3072])
+decoder.layers.10.fc2.bias: torch.Size([768])
+decoder.layers.10.final_layer_norm.weight: torch.Size([768])
+decoder.layers.10.final_layer_norm.bias: torch.Size([768])
+decoder.layers.11.self_attn.k_proj.weight: torch.Size([768, 768])
+decoder.layers.11.self_attn.k_proj.bias: torch.Size([768])
+decoder.layers.11.self_attn.v_proj.weight: torch.Size([768, 768])
+decoder.layers.11.self_attn.v_proj.bias: torch.Size([768])
+decoder.layers.11.self_attn.q_proj.weight: torch.Size([768, 768])
+decoder.layers.11.self_attn.q_proj.bias: torch.Size([768])
+decoder.layers.11.self_attn.out_proj.weight: torch.Size([768, 768])
+decoder.layers.11.self_attn.out_proj.bias: torch.Size([768])
+decoder.layers.11.self_attn_layer_norm.weight: torch.Size([768])
+decoder.layers.11.self_attn_layer_norm.bias: torch.Size([768])
+decoder.layers.11.fc1.weight: torch.Size([3072, 768])
+decoder.layers.11.fc1.bias: torch.Size([3072])
+decoder.layers.11.fc2.weight: torch.Size([768, 3072])
+decoder.layers.11.fc2.bias: torch.Size([768])
+decoder.layers.11.final_layer_norm.weight: torch.Size([768])
+decoder.layers.11.final_layer_norm.bias: torch.Size([768])
+
+2. 所有模块:
+: OPTModel
+decoder: OPTDecoder
+decoder.embed_tokens: Embedding
+decoder.embed_positions: OPTLearnedPositionalEmbedding
+decoder.final_layer_norm: LayerNorm
+decoder.layers: ModuleList
+decoder.layers.0: OPTDecoderLayer
+decoder.layers.0.self_attn: OPTAttention
+decoder.layers.0.self_attn.k_proj: Linear
+decoder.layers.0.self_attn.v_proj: Linear
+decoder.layers.0.self_attn.q_proj: Linear
+decoder.layers.0.self_attn.out_proj: Linear
+decoder.layers.0.activation_fn: ReLU
+decoder.layers.0.self_attn_layer_norm: LayerNorm
+decoder.layers.0.fc1: Linear
+decoder.layers.0.fc2: Linear
+decoder.layers.0.final_layer_norm: LayerNorm
+decoder.layers.1: OPTDecoderLayer
+decoder.layers.1.self_attn: OPTAttention
+decoder.layers.1.self_attn.k_proj: Linear
+decoder.layers.1.self_attn.v_proj: Linear
+decoder.layers.1.self_attn.q_proj: Linear
+decoder.layers.1.self_attn.out_proj: Linear
+decoder.layers.1.activation_fn: ReLU
+decoder.layers.1.self_attn_layer_norm: LayerNorm
+decoder.layers.1.fc1: Linear
+decoder.layers.1.fc2: Linear
+decoder.layers.1.final_layer_norm: LayerNorm
+decoder.layers.2: OPTDecoderLayer
+decoder.layers.2.self_attn: OPTAttention
+decoder.layers.2.self_attn.k_proj: Linear
+decoder.layers.2.self_attn.v_proj: Linear
+decoder.layers.2.self_attn.q_proj: Linear
+decoder.layers.2.self_attn.out_proj: Linear
+decoder.layers.2.activation_fn: ReLU
+decoder.layers.2.self_attn_layer_norm: LayerNorm
+decoder.layers.2.fc1: Linear
+decoder.layers.2.fc2: Linear
+decoder.layers.2.final_layer_norm: LayerNorm
+decoder.layers.3: OPTDecoderLayer
+decoder.layers.3.self_attn: OPTAttention
+decoder.layers.3.self_attn.k_proj: Linear
+decoder.layers.3.self_attn.v_proj: Linear
+decoder.layers.3.self_attn.q_proj: Linear
+decoder.layers.3.self_attn.out_proj: Linear
+decoder.layers.3.activation_fn: ReLU
+decoder.layers.3.self_attn_layer_norm: LayerNorm
+decoder.layers.3.fc1: Linear
+decoder.layers.3.fc2: Linear
+decoder.layers.3.final_layer_norm: LayerNorm
+decoder.layers.4: OPTDecoderLayer
+decoder.layers.4.self_attn: OPTAttention
+decoder.layers.4.self_attn.k_proj: Linear
+decoder.layers.4.self_attn.v_proj: Linear
+decoder.layers.4.self_attn.q_proj: Linear
+decoder.layers.4.self_attn.out_proj: Linear
+decoder.layers.4.activation_fn: ReLU
+decoder.layers.4.self_attn_layer_norm: LayerNorm
+decoder.layers.4.fc1: Linear
+decoder.layers.4.fc2: Linear
+decoder.layers.4.final_layer_norm: LayerNorm
+decoder.layers.5: OPTDecoderLayer
+decoder.layers.5.self_attn: OPTAttention
+decoder.layers.5.self_attn.k_proj: Linear
+decoder.layers.5.self_attn.v_proj: Linear
+decoder.layers.5.self_attn.q_proj: Linear
+decoder.layers.5.self_attn.out_proj: Linear
+decoder.layers.5.activation_fn: ReLU
+decoder.layers.5.self_attn_layer_norm: LayerNorm
+decoder.layers.5.fc1: Linear
+decoder.layers.5.fc2: Linear
+decoder.layers.5.final_layer_norm: LayerNorm
+decoder.layers.6: OPTDecoderLayer
+decoder.layers.6.self_attn: OPTAttention
+decoder.layers.6.self_attn.k_proj: Linear
+decoder.layers.6.self_attn.v_proj: Linear
+decoder.layers.6.self_attn.q_proj: Linear
+decoder.layers.6.self_attn.out_proj: Linear
+decoder.layers.6.activation_fn: ReLU
+decoder.layers.6.self_attn_layer_norm: LayerNorm
+decoder.layers.6.fc1: Linear
+decoder.layers.6.fc2: Linear
+decoder.layers.6.final_layer_norm: LayerNorm
+decoder.layers.7: OPTDecoderLayer
+decoder.layers.7.self_attn: OPTAttention
+decoder.layers.7.self_attn.k_proj: Linear
+decoder.layers.7.self_attn.v_proj: Linear
+decoder.layers.7.self_attn.q_proj: Linear
+decoder.layers.7.self_attn.out_proj: Linear
+decoder.layers.7.activation_fn: ReLU
+decoder.layers.7.self_attn_layer_norm: LayerNorm
+decoder.layers.7.fc1: Linear
+decoder.layers.7.fc2: Linear
+decoder.layers.7.final_layer_norm: LayerNorm
+decoder.layers.8: OPTDecoderLayer
+decoder.layers.8.self_attn: OPTAttention
+decoder.layers.8.self_attn.k_proj: Linear
+decoder.layers.8.self_attn.v_proj: Linear
+decoder.layers.8.self_attn.q_proj: Linear
+decoder.layers.8.self_attn.out_proj: Linear
+decoder.layers.8.activation_fn: ReLU
+decoder.layers.8.self_attn_layer_norm: LayerNorm
+decoder.layers.8.fc1: Linear
+decoder.layers.8.fc2: Linear
+decoder.layers.8.final_layer_norm: LayerNorm
+decoder.layers.9: OPTDecoderLayer
+decoder.layers.9.self_attn: OPTAttention
+decoder.layers.9.self_attn.k_proj: Linear
+decoder.layers.9.self_attn.v_proj: Linear
+decoder.layers.9.self_attn.q_proj: Linear
+decoder.layers.9.self_attn.out_proj: Linear
+decoder.layers.9.activation_fn: ReLU
+decoder.layers.9.self_attn_layer_norm: LayerNorm
+decoder.layers.9.fc1: Linear
+decoder.layers.9.fc2: Linear
+decoder.layers.9.final_layer_norm: LayerNorm
+decoder.layers.10: OPTDecoderLayer
+decoder.layers.10.self_attn: OPTAttention
+decoder.layers.10.self_attn.k_proj: Linear
+decoder.layers.10.self_attn.v_proj: Linear
+decoder.layers.10.self_attn.q_proj: Linear
+decoder.layers.10.self_attn.out_proj: Linear
+decoder.layers.10.activation_fn: ReLU
+decoder.layers.10.self_attn_layer_norm: LayerNorm
+decoder.layers.10.fc1: Linear
+decoder.layers.10.fc2: Linear
+decoder.layers.10.final_layer_norm: LayerNorm
+decoder.layers.11: OPTDecoderLayer
+decoder.layers.11.self_attn: OPTAttention
+decoder.layers.11.self_attn.k_proj: Linear
+decoder.layers.11.self_attn.v_proj: Linear
+decoder.layers.11.self_attn.q_proj: Linear
+decoder.layers.11.self_attn.out_proj: Linear
+decoder.layers.11.activation_fn: ReLU
+decoder.layers.11.self_attn_layer_norm: LayerNorm
+decoder.layers.11.fc1: Linear
+decoder.layers.11.fc2: Linear
+decoder.layers.11.final_layer_norm: LayerNorm
+============================================================
+1. 模型类型和基本信息
+============================================================
+模型类型: <class 'transformers.models.opt.modeling_opt.OPTModel'>
+模型类名: OPTModel
+配置类名: OPTConfig
+
+============================================================
+2. OPTModel 的所有属性
+============================================================
+公共属性和方法:
+  - T_destination
+  - active_adapters
+  - add_adapter
+  - add_memory_hooks
+  - add_model_tags
+  - add_module
+  - apply
+  - base_model
+  - base_model_prefix
+  - bfloat16
+  - buffers
+  - call_super_init
+  - can_generate
+  - can_record_outputs
+  - children
+  - compile
+  - config
+  - config_class
+  - cpu
+  - create_extended_attention_mask_for_decoder
+
+============================================================
+3. 具体属性值探索
+============================================================
+model.decoder: <class 'transformers.models.opt.modeling_opt.OPTDecoder'>
+  -> 包含 layers: 12
+model.model: 不存在
+model.transformer: 不存在
+model.encoder: 不存在
+model.layers: 不存在
+
+3. Decoder层详细结构:
+模型总层数: 12
+隐藏层维度: 768
+注意力头数: 12
+每个头的维度: 64
+
+第一层包含:
+  - self_attn: OPTAttention
+  - activation_fn: ReLU
+  - self_attn_layer_norm: LayerNorm
+  - fc1: Linear
+  - fc2: Linear
+  - final_layer_norm: LayerNorm
+OPTDecoderLayer forward 参数:
+  hidden_states: hidden_states: torch.Tensor
+  attention_mask: attention_mask: Optional[torch.Tensor] = None
+  layer_head_mask: layer_head_mask: Optional[torch.Tensor] = None
+  past_key_values: past_key_values: Optional[transformers.cache_utils.Cache] = None
+  output_attentions: output_attentions: Optional[bool] = False
+  use_cache: use_cache: Optional[bool] = False
+  position_ids: position_ids: Optional[torch.LongTensor] = None
+  cache_position: cache_position: Optional[torch.Tensor] = None
+  kwargs: **kwargs: typing_extensions.Unpack[transformers.modeling_flash_attention_utils.FlashAttentionKwargs]
+model.safetensors: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 251M/251M [00:42<00:00, 5.84MB/s]
