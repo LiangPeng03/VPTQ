@@ -1,69 +1,115 @@
-# VPTQ_OPT - 专为OPT模型设计的VPTQ量化工具
+# VPTQ for OPT Models
 
-这是一个专门为OPT模型重构的VPTQ量化工具，保留了核心功能模块，包括：
+This project extends the VPTQ (Vector Permutation Tensor Quantization) framework to support quantization of OPT (Open Pre-trained Transformer) models. The code is adapted from the original VPTQ implementation which was designed for LLaMA models.
 
-## 项目结构
+## Overview
 
-```
-vptq_opt/
-├── __init__.py
-├── models/
-│   └── opt.py          # OPT模型相关处理
-├── layers/
-│   └── vqlinear.py     # 向量量化线性层实现
-├── utils/
-│   ├── hessian.py      # Hessian矩阵处理工具
-│   └── layer_utils.py  # 层处理工具
-└── tools/
-    ├── quantize_executer.py  # 量化执行器
-    ├── layer_quantizer.py    # 层量化器
-    └── run_quantization.py   # 主程序入口
-```
+VPTQ-OP is a quantization framework specifically designed for OPT models. It implements vector permutation tensor quantization to achieve high compression ratios while maintaining model accuracy.
 
-## 核心模块说明
+## Features
 
-### 1. models/opt.py
-- `get_opt()` - 加载原始OPT模型
-- `quant_opt()` - 对OPT模型进行VPTQ量化
-- `get_quantized_opt()` - 构建量化后的OPT模型
-- `eval_opt()` - 评估OPT模型性能
+- Quantization of OPT models using VPTQ methodology
+- Support for multi-GPU quantization
+- Integration with Hugging Face Transformers
+- Configurable quantization parameters
+- Evaluation tools for quantized models
 
-### 2. layers/vqlinear.py
-- `VQuantLinear` - 向量量化线性层类
-- 实现了从码本和索引重构权重的机制
-
-### 3. utils/hessian.py
-- `load_hessian()` - 加载Hessian矩阵
-- `load_inv_hessian()` - 加载逆Hessian矩阵
-
-### 4. utils/layer_utils.py
-- `find_layers()` - 查找模型中的指定层
-- `replace_layer()` - 替换模型中的层
-
-### 5. tools/quantize_executer.py
-- `quantize_executer()` - 量化执行器主函数
-
-### 6. tools/layer_quantizer.py
-- `layer_quantizer()` - 层级量化器
-
-## 使用方法
+## Installation
 
 ```bash
-python vptq_opt/run_quantization.py \
-    --model_name facebook/opt-125m \
-    --hessian_path /path/to/hessian/files \
-    --output_dir ./quantized_models
+# Clone the repository
+git clone https://github.com/your-username/VPTQ_OPT.git
+cd VPTQ_OPT
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-## 特点
+## Usage
 
-1. **专为OPT模型设计** - 移除了对其他模型（如LLaMA、Qwen等）的支持，专注于OPT模型
-2. **精简结构** - 仅保留核心量化流程所需模块
-3. **易于扩展** - 清晰的模块划分便于后续功能扩展
-4. **兼容性** - 保持与原VPTQ项目类似的接口设计
+### Quantization
 
-## 注意事项
+To quantize an OPT model:
 
-1. 需要预先准备好Hessian矩阵文件
-2. 当前版本主要面向单GPU量化场景
-3. 某些高级功能（如多GPU支持）需要手动实现
+```bash
+bash run_quantization_opt.sh
+```
+
+Alternatively, you can run the quantization directly:
+
+```bash
+python run_vptq_opt.py \
+    --model_name path/to/your/opt/model \
+    --output_dir path/to/output \
+    --vector_lens -1 8 \
+    --group_num 1 \
+    --num_centroids -1 65536 \
+    --num_res_centroids -1 256 \
+    --npercent 0 \
+    --blocksize 128 \
+    --new_eval \
+    --seq_len 8192 \
+    --kmeans_mode hessian \
+    --num_gpus 1 \
+    --enable_perm \
+    --enable_norm \
+    --save_model \
+    --save_packed_model
+```
+
+### Evaluation
+
+To evaluate a quantized OPT model:
+
+```bash
+python eval_opt.py --model_path path/to/your/quantized/model
+```
+
+## Configuration Options
+
+- `--model_name`: Path to the pre-trained OPT model
+- `--output_dir`: Directory to save the quantized model
+- `--vector_lens`: Vector lengths for quantization (default: [-1, 8])
+- `--group_num`: Number of groups for quantization (default: 1)
+- `--num_centroids`: Number of centroids for primary quantization (default: -1)
+- `--num_res_centroids`: Number of centroids for residual quantization (default: -1)
+- `--npercent`: Percentage of outliers (default: 0)
+- `--blocksize`: Block size for quantization (default: 128)
+- `--seq_len`: Sequence length for processing (default: 2048)
+- `--kmeans_mode`: K-means mode (default: 'hessian')
+- `--num_gpus`: Number of GPUs to use (default: 1)
+- `--enable_perm`: Enable permutation optimization
+- `--enable_norm`: Enable normalization
+- `--save_model`: Save the quantized model
+- `--save_packed_model`: Save a packed version of the model
+
+## Project Structure
+
+```
+VPTQ_OPT/
+├── README.md
+├── eval_opt.py          # OPT model evaluation utilities
+├── run_vptq_opt.py      # Main script for OPT model quantization
+├── run_quantization_opt.sh  # Script to run OPT quantization
+├── vptq_opt/            # VPTQ implementation for OPT models
+│   ├── __init__.py
+│   └── opt.py           # OPT-specific quantization functions
+└── requirements.txt     # Python dependencies
+```
+
+## Dependencies
+
+- Python >= 3.8
+- PyTorch >= 1.12
+- Transformers
+- Datasets
+- Tqdm
+- NumPy
+
+## Results
+
+The VPTQ framework for OPT models achieves competitive compression ratios while maintaining model quality. Quantized models can be used with minimal performance degradation compared to full-precision models.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
