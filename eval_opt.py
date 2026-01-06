@@ -5,29 +5,31 @@ from tqdm import tqdm
 
 @torch.no_grad()
 # 加速用的：不更新权重，不反向传播的时候用
-
-def eval_llama(model, testenc, dev):
+def eval_opt(model, testenc, dev):
     current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print(f'----Evaluating llama ...---- {current_time}')
+    print(f'----Evaluating OPT ...---- {current_time}')
 
     testenc = testenc.input_ids
     nsamples = testenc.numel() // model.seqlen
 
     use_cache = model.config.use_cache
     model.config.use_cache = False
-    layers = model.model.layers
+    
+    # OPT模型的层结构与LLaMA不同
+    layers = model.model.decoder.layers
 
-    model.model.embed_tokens = model.model.embed_tokens.to(dev)
-    # fix for llama-3.1
-    if hasattr(model.model, 'rotary_emb'):
-        model.model.rotary_emb = model.model.rotary_emb.to(dev)
-        # 旋转词嵌入层
+    model.model.decoder.embed_tokens = model.model.decoder.embed_tokens.to(dev)
+    model.model.decoder.embed_positions = model.model.decoder.embed_positions.to(dev)
+    
+    # 如果存在layernorm_embedding，则也需要移到设备上
+    if hasattr(model.model.decoder, 'layernorm_embedding'):
+        model.model.decoder.layernorm_embedding = model.model.decoder.layernorm_embedding.to(dev)
+    
     layers[0] = layers[0].to(dev)
 
     dtype = next(iter(model.parameters())).dtype
     inps = torch.zeros((nsamples, model.seqlen, model.config.hidden_size), dtype=dtype, device=dev)
     cache = {'i': 0, 'attention_mask': None}
-    # 注意力掩码：告诉模型哪些位置是输入的，哪些位置是补位填充的
 
     class Catcher(nn.Module):
         def __init__(self, module):
@@ -37,10 +39,7 @@ def eval_llama(model, testenc, dev):
         def forward(self, inp, **kwargs):
             inps[cache['i']] = inp
             cache['i'] += 1
-            cache['attention_mask'] = kwargs['attention_mask']
-            cache['position_ids'] = kwargs['position_ids']
-            if hasattr(model.model, 'rotary_emb'):
-                cache['rotary_emb'] = model.model.rotary_emb(x=inp, position_ids=kwargs['position_ids'])
+            cache['attention_mask'] = kwargs.get('attention_mask', None)
             raise ValueError
 
     layers[0] = Catcher(layers[0])
@@ -53,40 +52,41 @@ def eval_llama(model, testenc, dev):
     layers[0] = layers[0].module
 
     layers[0] = layers[0].cpu()
-    model.model.embed_tokens = model.model.embed_tokens.cpu()
+    model.model.decoder.embed_tokens = model.model.decoder.embed_tokens.cpu()
+    model.model.decoder.embed_positions = model.model.decoder.embed_positions.cpu()
+    if hasattr(model.model.decoder, 'layernorm_embedding'):
+        model.model.decoder.layernorm_embedding = model.model.decoder.layernorm_embedding.cpu()
     torch.cuda.empty_cache()
 
     outs = torch.zeros_like(inps)
     attention_mask = cache['attention_mask']
-    position_ids = cache['position_ids']
-    # get position embeddings from the model's rotary embeddings
-    # for the latest huggingface transformers
-    position_embeddings = model.model.rotary_emb(outs, position_ids)
 
     for i in tqdm(range(len(layers))):
         layer = layers[i].to(dev)
 
         for j in range(nsamples):
-            outs[j] = layer(inps[j].unsqueeze(0).to(dev), 
-                          attention_mask=attention_mask, 
-                          position_ids=position_ids,
-                          position_embeddings=position_embeddings)[0]
+            if attention_mask is not None:
+                outs[j] = layer(inps[j].unsqueeze(0).to(dev), 
+                              attention_mask=attention_mask)[0]
+            else:
+                outs[j] = layer(inps[j].unsqueeze(0).to(dev))[0]
 
         layers[i] = layer.cpu()
         del layer
         torch.cuda.empty_cache()
         inps, outs = outs, inps
 
-    if model.model.norm is not None:
-        model.model.norm = model.model.norm.to(dev)
+    # OPT模型的最终归一化层在decoder中
+    if model.model.decoder.final_layer_norm is not None:
+        model.model.decoder.final_layer_norm = model.model.decoder.final_layer_norm.to(dev)
     model.lm_head = model.lm_head.to(dev)
 
     testenc = testenc.to(dev)
     nlls = []
     for i in range(nsamples):
         hidden_states = inps[i].unsqueeze(0)
-        if model.model.norm is not None:
-            hidden_states = model.model.norm(hidden_states)
+        if model.model.decoder.final_layer_norm is not None:
+            hidden_states = model.model.decoder.final_layer_norm(hidden_states)
         lm_logits = model.lm_head(hidden_states)
         shift_logits = lm_logits[:, :-1, :].contiguous()
         shift_labels = testenc[:, (i * model.seqlen):((i + 1) * model.seqlen)][:, 1:]
@@ -268,7 +268,7 @@ set_seed(0)
 
 # 命令行参数解析：1.创建一个参数解析器对象 2.添加参数 3.解析参数，返回一个包含所有参数值的对象
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_path", type=str, default="VPTQ-community/Meta-Llama-3.1-8B-Instruct-v8-k65536-65536-woft")
+parser.add_argument("--model_path", type=str, default="facebook/opt-125m")
 args = parser.parse_args()
 
 model = AutoModelForCausalLM.from_pretrained(args.model_path, local_files_only=True)
@@ -290,8 +290,10 @@ for seqlen in seqlens:
         
         print(f"Evaluating {dataset} with context length {seqlen}")
         
-        if 'llama' in model_name.lower() or 'mistral' in model_name.lower():
-            ppl = eval_llama(model, testloader, 'cuda')
+        if 'opt' in model_name.lower():
+            ppl = eval_opt(model, testloader, 'cuda')
+        elif 'llama' in model_name.lower() or 'mistral' in model_name.lower():
+            raise NotImplementedError("LLaMA evaluation not implemented in this version")
         else:
             raise ValueError(f"Unsupported model: {model_name}")
 
