@@ -99,7 +99,7 @@ def forward_layer(layer, position_ids, attention_mask, bs, device, in_q, out_q, 
     # register hooks
     done_qkv = register_H_hook(layer.self_attn.q_proj, device)
     done_o = register_H_hook(layer.self_attn.o_proj, device)
-    done_gate = register_H_hook(layer.mlp.gate_proj, device)
+    # done_gate = register_H_hook(layer.mlp.gate_proj, device)
     done_up = register_H_hook(layer.mlp.up_proj, device)
     done_down = register_H_hook(layer.mlp.down_proj, device)
 
@@ -109,7 +109,7 @@ def forward_layer(layer, position_ids, attention_mask, bs, device, in_q, out_q, 
             layer = layer.cpu()
             position_ids = position_ids.cpu()
             attention_mask = attention_mask.cpu()
-            out_q.put({'qkv': done_qkv(), 'o': done_o(), 'gate': done_gate(), 'up': done_up(), 'down': done_down()})
+            out_q.put({'qkv': done_qkv(), 'o': done_o(),  'up': done_up(), 'down': done_down()})
             return
 
         assert len(dev_emb) % bs == 0

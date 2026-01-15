@@ -22,7 +22,9 @@ sleep 2
 python hessian_collector.py \
     --base_model /home/pengliang/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9 \
     --save_path /home/pengliang/Desktop/local_models/llama2_7b/hessians \
-    --gpus "1" \
+    --gpus "0,1" \
+    --devset_size 6144 \
+    # --ctx_size 8192 \
 
 # 量化完成后停止监控
 kill $MONITOR_PID
