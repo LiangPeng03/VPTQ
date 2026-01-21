@@ -10,15 +10,13 @@ CUDA_VISIBLE_DEVICES=0,1 /home/pengliang/glibc/glibc-2.32-install/lib/ld-linux-x
     --num_res_centroids -1 -1 \
     --npercent 0 \
     --blocksize 128 \
-    --new_eval \
+    --new_eval True \
     --seq_len 2048 \
     --kmeans_mode hessian \
     --num_gpus 2 \
-    --enable_perm True \
-    --enable_norm True \
-    --save_model \
-    --save_packed_model \
-    --hessian_path /home/pengliang/.cache/huggingface/hub/models--relaxml--Hessians-Llama-2-7b-6144/snapshots/cafc59c036c6416ec2a9d5790752bec51297c197 \
-    --inv_hessian_path /home/pengliang/Desktop/local_models/llama2_7b/inv_hessians \
+    --norm_dim 0 \
+    --save_packed_model True \
+    --hessian_path /home/pengliang/Desktop/local_models/llama2_7b/hessians \
+    --inv_hessian_path /home/pengliang/Desktop/local_models/llama2_7b/inv_hessians_self \
     --ktol 1e-5 --kiter 100
 
