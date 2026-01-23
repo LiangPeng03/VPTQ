@@ -1,13 +1,13 @@
 #!/bin/bash
-CUDA_VISIBLE_DEVICES=0 /home/pengliang/glibc/glibc-2.32-install/lib/ld-linux-x86-64.so.2 \
+CUDA_VISIBLE_DEVICES=0,1 /home/pengliang/glibc/glibc-2.32-install/lib/ld-linux-x86-64.so.2 \
   --library-path "/home/pengliang/glibc/glibc-2.32-install/lib:/usr/lib64:/usr/lib" \
   $(which python) run_vptq_opt.py \
     --model_name /home/pengliang/.cache/huggingface/hub/models--facebook--opt-125m/snapshots/27dcfa74d334bc871f3234de431e71c6eeba5dd6 \
     --output_dir /home/pengliang/Desktop/test_output/opt_125m/ \
-    --vector_lens -1 8 \
+    --vector_lens -1 6 \
     --group_num 1 \
-    --num_centroids -1 65536 \
-    --num_res_centroids -1 256 \
+    --num_centroids -1 4096 \
+    --num_res_centroids -1 -1 \
     --npercent 0 \
     --blocksize 128 \
     --new_eval \
